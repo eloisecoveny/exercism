@@ -1,28 +1,23 @@
-import scala.collection.immutable.HashMap
-import scala.collection.mutable
-
 class School {
-  type DB = Map[Int, Seq[String]]
+
+  type DB = Map[Int,Seq[String]]
 
   var database: DB = Map()
 
-  def add(name: String, g: Int) = {
-//    database.map(grade => if (grade._1 == g) {
-//      grade + name
-//    } else {
-//      database ++ Map(g -> Seq(name))
-//    })
-
-    if (database.contains(g)) {
-      database = database(g) + name
-    } else {
-      database = database ++ Map(g -> Seq(name))
-    }
+  def add(student: String, grade: Int) = {
+    if(database.contains(grade)) database += (grade -> (this.grade(grade) :+ student))
+    else database += (grade -> Seq(student))
   }
 
   def db: DB = database
 
-  def grade(g: Int): Seq[String] = ???
+  def grade(gr: Int) = {
+    database.getOrElse(gr,Seq())
+  }
 
-  def sorted: DB = ???
+  def sorted = {
+    database.toSeq.sortBy(_._1)
+      .map(gr => gr._1 -> gr._2.sorted)
+      .toMap
+  }
 }
