@@ -94,17 +94,15 @@ class RobotSimulatorTest extends FunSuite with Matchers {
       Robot(Bearing.West, (-4, 1)))
   }
 
-//  test(
-//    "Where R = Turn Right, L = Turn Left and A = Advance, the robot can follow a series of instructions and end up with the correct position and direction - instructions to move west and south") {
-//    
-//    Robot(Bearing.East, (2, -7)).simulate("RRAAAAALA") should be(
-//      Robot(Bearing.South, (-3, -8)))
-//  }
-//
-//  test(
-//    "Where R = Turn Right, L = Turn Left and A = Advance, the robot can follow a series of instructions and end up with the correct position and direction - instructions to move east and north") {
-//    
-//    Robot(Bearing.South, (8, 4)).simulate("LAAARRRALLLL") should be(
-//      Robot(Bearing.North, (11, 5)))
-//  }
+  test(
+    "Where R = Turn Right, L = Turn Left and A = Advance, the robot can follow a series of instructions and end up with the correct position and direction - instructions to move west and south") {
+    Robot(Bearing.East, (2, -7)).simulate("RRAAAAALA") should be(
+      Robot(Bearing.South, (-3, -8)))
+  }
+
+  test(
+    "Where R = Turn Right, L = Turn Left and A = Advance, the robot can follow a series of instructions and end up with the correct position and direction - instructions to move east and north") {
+    Robot(Bearing.South, (8, 4)).simulate("LAAARRRALLLL") should be(
+      Robot(Bearing.North, (11, 5)))
+  }
 }
