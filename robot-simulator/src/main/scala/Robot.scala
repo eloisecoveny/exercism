@@ -33,13 +33,11 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
   def simulate(input: String): Robot = {
     val instructions = input.split("")
     var robot: Robot = this
-    instructions.foreach(instruction => {
-      instruction match {
-        case ("R") => robot = robot.turnRight
-        case ("L") => robot = robot.turnLeft
-        case ("A") => robot = robot.advance
-      }
-    })
+    instructions.foreach {
+      case ("R") => robot = robot.turnRight
+      case ("L") => robot = robot.turnLeft
+      case ("A") => robot = robot.advance
+    }
     robot
   }
 }
