@@ -1,11 +1,13 @@
 object SecretHandshake {
 
-  val key = List(
-    "wink",
-    "double blink",
-    "close your eyes",
-    "jump"
+  val map = Map(
+    1 -> "wink",
+    10 -> "double blink",
+    100 -> "close your eyes",
+    1000 -> "jump"
   )
+
+  val key = map.values.toList
 
   val range: List[Int] = List(128, 64, 32, 16, 8, 4, 2, 1)
 
