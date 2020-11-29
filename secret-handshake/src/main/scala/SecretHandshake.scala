@@ -1,4 +1,4 @@
-case class SecretHandshake {
+object SecretHandshake {
 
   val key = Map(
     1000 -> "jump",
@@ -7,24 +7,23 @@ case class SecretHandshake {
     1 -> "wink"
   )
 
-  val range = List(128, 64, 32, 16, 8, 4, 3, 1)
+  val range: List[Int] = List(128, 64, 32, 16, 8, 4, 2, 1)
 
-  def commands(int: Int): List[String] = {
-    val binary = convertToBinary(int)
-    if (int > 0) {
-      // iterate over the map and
+    def commands(int: Int): List[String] = {
+      val binary: Int = convertToBinary(int)
+      // iterate over the key map and if
+
     }
-  }
 
-  def convertToBinary(int: Int, binary: List[Int] = List()): Int = {
-    range.map(number => {
-      if (int == 0) {
-        binary.reduce(_)
-      } else if (int > number) {
-        convertToBinary(int - number, binary :+ 1)
+  def convertToBinary(int: Int, binary: List[String] = List.empty[String], index: Int = 0): Int = {
+    if (index < range.length) {
+      if (int >= range(index)) {
+        convertToBinary(int - range(index), binary :+ "1", index + 1)
       } else {
-        convertToBinary(int, binary :+ 0)
+        convertToBinary(int, binary :+ "0", index + 1)
       }
-    })
+    } else {
+      binary.mkString.toInt
+    }
   }
 }
