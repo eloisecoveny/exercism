@@ -1,13 +1,13 @@
 object SecretHandshake {
 
-  val map = Map(
+  val codeMapping = Map(
     1 -> "wink",
     10 -> "double blink",
     100 -> "close your eyes",
     1000 -> "jump"
   )
 
-  val key = map.values.toList
+  val codes = codeMapping.values.toList
 
   val range: List[Int] = List(128, 64, 32, 16, 8, 4, 2, 1)
 
@@ -27,13 +27,13 @@ object SecretHandshake {
                             secretHandshake: List[String] = List.empty[String]): List[String] = {
     if (index > 0) {
       if (binaryList(index).toInt == 1) {
-        createSecretHandshake(index - 1, binaryList, key(index) +: secretHandshake)
+        createSecretHandshake(index - 1, binaryList, codes(index) +: secretHandshake)
       } else {
         createSecretHandshake(index - 1, binaryList, secretHandshake)
       }
     } else {
       if (binaryList(index).toInt == 1) {
-        key(index) +: secretHandshake
+        codes(index) +: secretHandshake
       } else {
         secretHandshake
       }
