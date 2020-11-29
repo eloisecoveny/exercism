@@ -4,10 +4,11 @@ object SecretHandshake {
     1 -> "wink",
     10 -> "double blink",
     100 -> "close your eyes",
-    1000 -> "jump"
+    1000 -> "jump",
+    10000 -> ""
   )
 
-  val codes = codeMapping.values.toList
+  val codes = List("wink", "double blink", "close your eyes", "jump", "")
 
   val range: List[Int] = List(128, 64, 32, 16, 8, 4, 2, 1)
 
@@ -15,10 +16,10 @@ object SecretHandshake {
       val binary: Int = convertToBinary(int)
       val binaryList: List[String] = binary.toString.split("").toList.reverse
       val numberOfDigits: Int = binaryList.length
-      if (int < 10000) {
+      if (binary < 10000) {
         createSecretHandshake(numberOfDigits - 1, binaryList)
       } else {
-        ???
+        createSecretHandshake(numberOfDigits - 1, binaryList).reverse.tail
       }
     }
 
