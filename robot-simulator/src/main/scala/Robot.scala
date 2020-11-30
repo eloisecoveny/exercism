@@ -3,21 +3,11 @@ import Bearing.{Bearing, East, North, South, West}
 case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
 
   def turnRight: Robot = {
-    bearing match {
-      case North => Robot(Bearing.East, this.coordinates)
-      case East => Robot(Bearing.South, this.coordinates)
-      case South => Robot(Bearing.West, this.coordinates)
-      case West => Robot(Bearing.North, this.coordinates)
-    }
+    this.copy(Bearing.turnRight(bearing), this.coordinates)
   }
 
   def turnLeft: Robot = {
-    bearing match {
-      case North => Robot(Bearing.West, this.coordinates)
-      case East => Robot(Bearing.North, this.coordinates)
-      case South => Robot(Bearing.East, this.coordinates)
-      case West => Robot(Bearing.South, this.coordinates)
-    }
+    this.copy(Bearing.turnLeft(bearing), this.coordinates)
   }
 
   def advance: Robot = {
@@ -45,4 +35,21 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
 object Bearing extends Enumeration {
   type Bearing = Value
   val North, East, South, West = Value
+
+  def turnRight(bearing: Bearing): Bearing = {
+    val index = bearing.id
+    if (index < 3) {
+      Bearing(index + 1)
+    } else {
+      Bearing.North
+    }
+  }
+  def turnLeft(bearing: Bearing): Bearing = {
+    val index = bearing.id
+    if (index > 0) {
+      Bearing(index - 1)
+    } else {
+      Bearing.West
+    }
+  }
 }
