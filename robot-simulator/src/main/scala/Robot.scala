@@ -22,7 +22,7 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
 
   def simulate(input: String): Robot = {
     val instructions = input.split("")
-    var robot: Robot = this
+    var robot: Robot = this.copy()
     instructions.foreach {
       case ("R") => robot = robot.turnRight
       case ("L") => robot = robot.turnLeft
@@ -37,19 +37,10 @@ object Bearing extends Enumeration {
   val North, East, South, West = Value
 
   def turnRight(bearing: Bearing): Bearing = {
-    val index = bearing.id
-    if (index < 3) {
-      Bearing(index + 1)
-    } else {
-      Bearing.North
-    }
+    if (bearing.id < 3) Bearing(bearing.id + 1) else Bearing(0)
   }
+
   def turnLeft(bearing: Bearing): Bearing = {
-    val index = bearing.id
-    if (index > 0) {
-      Bearing(index - 1)
-    } else {
-      Bearing.West
-    }
+    if (bearing.id > 0) Bearing(bearing.id - 1) else Bearing(3)
   }
 }
