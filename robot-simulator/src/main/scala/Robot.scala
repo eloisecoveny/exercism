@@ -17,7 +17,7 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
       case South => this.coordinates.copy(coordinates._1, coordinates._2 - 1)
       case West => this.coordinates.copy(coordinates._1 - 1, coordinates._2)
     }
-    Robot(this.bearing, newCoordinates)
+    this.copy(bearing, newCoordinates)
   }
 
   def simulate(input: String): Robot = {
