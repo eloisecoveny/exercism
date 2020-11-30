@@ -12,10 +12,10 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
 
   def advance: Robot = {
     val newCoordinates = bearing match {
-      case North => (this.coordinates._1, this.coordinates._2 + 1)
-      case East => (this.coordinates._1 + 1, this.coordinates._2)
-      case South => (this.coordinates._1, this.coordinates._2 - 1)
-      case West => (this.coordinates._1 - 1, this.coordinates._2)
+      case North => this.coordinates.copy(coordinates._1, coordinates._2 + 1)
+      case East => this.coordinates.copy(coordinates._1 + 1, coordinates._2)
+      case South => this.coordinates.copy(coordinates._1, coordinates._2 - 1)
+      case West => this.coordinates.copy(coordinates._1 - 1, coordinates._2)
     }
     Robot(this.bearing, newCoordinates)
   }
