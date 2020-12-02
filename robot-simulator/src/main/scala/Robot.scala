@@ -22,13 +22,13 @@ case class Robot(bearing: Bearing, coordinates: (Int,Int)) {
 
   def simulate(input: String): Robot = {
     val instructions = input.split("")
-    var robot: Robot = this.copy()
-    instructions.foreach {
-      case ("R") => robot = robot.turnRight
-      case ("L") => robot = robot.turnLeft
-      case ("A") => robot = robot.advance
+    instructions.foldLeft(this) {
+      case (robot, instruction) => instruction match {
+          case ("R") => robot.turnRight
+          case ("L") => robot.turnLeft
+          case ("A") => robot.advance
+      }
     }
-    robot
   }
 }
 
