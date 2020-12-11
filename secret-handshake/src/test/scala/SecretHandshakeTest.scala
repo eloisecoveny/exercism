@@ -3,10 +3,6 @@ import org.scalatest.{FunSuite, Matchers}
 /** @version 1.2.0 */
 class SecretHandshakeTest extends FunSuite with Matchers {
 
-  test("test convertToBinary method") {
-    SecretHandshake.convertToBinary(23) should be (10111)
-  }
-
   test("wink for 1") {
     SecretHandshake.commands(1) should be (List("wink"))
   }
