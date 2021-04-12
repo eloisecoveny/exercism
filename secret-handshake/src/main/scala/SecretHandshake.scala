@@ -2,9 +2,9 @@ import scala.annotation.tailrec
 
 object SecretHandshake {
 
-  val gestures = List("wink", "double blink", "close your eyes", "jump")
+  val defaultGestures = List("wink", "double blink", "close your eyes", "jump")
 
-  def commands(int: Int, gestures: List[String] = gestures): List[String] = {
+  def commands(int: Int, gestures: List[String] = defaultGestures): List[String] = {
     if (int < 16) createSecretHandshake(int, gestures)
     else createSecretHandshake(int, gestures).reverse
   }
