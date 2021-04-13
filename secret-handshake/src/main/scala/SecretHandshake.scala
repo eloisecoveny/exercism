@@ -13,12 +13,11 @@ object SecretHandshake {
   def createSecretHandshake(value: Int,
                             gestures: List[String],
                             handshake: List[String] = List.empty[String]): List[String] = {
-    if (gestures.isEmpty) handshake
-    else {
-      value.toBinaryString.last match {
-        case '1' => createSecretHandshake (value >> 1, gestures.tail, handshake :+ gestures.head)
-        case _ => createSecretHandshake (value >> 1, gestures.tail, handshake)
-      }
+    gestures match {
+      case Nil => handshake
+      case head :: tail =>
+        if ((value & 1) == 1) createSecretHandshake(value >> 1, tail, handshake :+ head)
+        else createSecretHandshake(value >> 1, gestures.tail, handshake)
     }
   }
 }
