@@ -15,9 +15,8 @@ object SecretHandshake {
                             handshake: List[String] = List.empty[String]): List[String] = {
     gestures match {
       case Nil => handshake
-      case head :: tail =>
-        if ((value & 1) == 1) createSecretHandshake(value >> 1, tail, handshake :+ head)
-        else createSecretHandshake(value >> 1, gestures.tail, handshake)
+      case head :: tail if (value & 1) == 1 => createSecretHandshake(value >> 1, tail, handshake :+ head)
+      case _ :: tail => createSecretHandshake(value >> 1, tail, handshake)
     }
   }
 }
