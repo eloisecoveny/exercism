@@ -1,7 +1,7 @@
 import scala.annotation.tailrec
 
 class Accumulate {
-  def accumulate[A, B](f: (A) => B, list : List[A]): List[B] = {
+  def accumulate[A, B](f: (A) => B, list: List[A]): List[B] = {
 
     @tailrec
     def accumulation(input: List[A], output: List[B]): List[B] = {
