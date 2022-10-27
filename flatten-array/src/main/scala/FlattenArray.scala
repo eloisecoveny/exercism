@@ -1,11 +1,14 @@
 object FlattenArray {
 
-  def flatten(array: List[Any]): List[Any] = {
-    array.map(element => {
-      element match {
-        case int: Int => int
-        case list: List[Any] => flatten(list)
-      }
-    })
+  def flatten(list: List[Any]): List[Any] = {
+    val flattenedList = list
+    flattenedList match {
+      case x :: xs =>
+        x match {
+          case y :: ys => (y :: flatten(ys)) ::: flatten(xs)
+          case _ => x :: flatten(xs)
+        }
+      case x => x
+    }
   }
 }
