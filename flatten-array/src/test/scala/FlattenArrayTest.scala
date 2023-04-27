@@ -13,7 +13,6 @@ class FlattenArrayTest extends FunSuite with Matchers {
   }
 
   test("5 level nesting") {
-    pending
     FlattenArray.flatten(List(0,
                               2,
                               List(List(2, 3), 8, 100, 4, List(List(List(50)))),
@@ -22,7 +21,6 @@ class FlattenArrayTest extends FunSuite with Matchers {
   }
 
   test("6 level nesting") {
-    pending
     FlattenArray.flatten(List(
       1,
       List(2, List(List(3)), List(4, List(List(5))), 6, 7),
@@ -30,7 +28,6 @@ class FlattenArrayTest extends FunSuite with Matchers {
   }
 
   test("6 level nest list with null values") {
-    pending
     FlattenArray.flatten(
       List(0,
            2,
@@ -39,7 +36,6 @@ class FlattenArrayTest extends FunSuite with Matchers {
   }
 
   test("all values in nested list are null") {
-    pending
     FlattenArray.flatten(
       List(null,
            List(List(List(null))),
